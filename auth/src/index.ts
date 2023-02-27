@@ -4,7 +4,7 @@ import { app } from './app'
 const start = async () => {
   if (!process.env.JWT_KEY) throw new Error('JWT_KEY must be defined');
 
-  console.log("test ci")
+  console.log("test workflow")
 
   try {
     mongoose.set("strictQuery", false);
