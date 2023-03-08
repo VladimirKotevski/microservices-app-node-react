@@ -38,6 +38,13 @@ spec:
                 name: orders-srv
                 port:
                   number: 3000
+          # - path: /admin/?(.*)
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: admin-ui-srv
+          #       port:
+          #         number: 3001
           - path: /?(.*)
             pathType: Prefix
             backend:
@@ -45,3 +52,13 @@ spec:
                 name: client-srv
                 port:
                   number: 3000
+    - host: admin.ticketing.dev
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: admin-ui-srv
+                port:
+                  number: 3001

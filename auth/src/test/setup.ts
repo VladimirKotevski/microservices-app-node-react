@@ -47,8 +47,6 @@ global.signin = async () => {
     })
     .expect(201);
 
-    console.log("made", response.get("Set-Cookie"))
-
   const cookie = response.get("Set-Cookie");
 
   return cookie;

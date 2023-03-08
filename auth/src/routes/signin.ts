@@ -22,6 +22,7 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
+    const { origin } = req.headers;
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
@@ -46,9 +47,17 @@ router.post(
     );
 
     // Store it on session object
-    req.session = {
-      jwt: userJwt
-    };
+    if (origin === 'https://admin.ticketing.dev') {
+      req.session = {
+        ...req.session,
+        adminJwt: userJwt,
+      };
+    } else {
+      req.session = {
+        ...req.session,
+        userJwt: userJwt,
+      };
+    }
 
     res.status(200).send(existingUser);
   }

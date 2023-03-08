@@ -25,6 +25,14 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+    - image: vladimirkot/admin-ui
+      context: admin-ui
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
     - image: vladimirkot/tickets
       context: tickets
       docker:
