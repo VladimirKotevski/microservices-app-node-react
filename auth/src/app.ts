@@ -11,20 +11,19 @@ import { errorHandler, NotFoundError } from '@vkticketing1/common';
 import cors from 'cors';
 
 const app = express();
-app.use(cors(
-  { 
-    origin: "https://admin.ticketing.dev",
-    methods: [ "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    credentials: true
-   }
-));
+// app.use(cors(
+//   { 
+//     origin: "https://admin.ticketing.dev",
+//     methods: [ "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+//     credentials: true
+//    }
+// ));
 app.set("trust proxy", true);
 app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== 'test',
-    domain: '.ticketing.dev'
+    secure: process.env.NODE_ENV !== 'test'
   })
 );
 

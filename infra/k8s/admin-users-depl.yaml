@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-users-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: admin-users
+  template:
+    metadata:
+      labels:
+        app: admin-users
+    spec:
+      containers:
+        - name: admin-users
+          image: vladimirkot/admin-users
+          env: 
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-users-srv
+spec:
+  selector:
+    app: admin-users
+  ports:
+    - name: admin-users
+      protocol: TCP
+      port: 3001
+      targetPort: 3001
