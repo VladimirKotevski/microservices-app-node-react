@@ -6,13 +6,9 @@ export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
-    url: '/api/users/signin',
-    method: 'post',
-    body: {
-      email,
-      password
-    },
-    onSuccess: () => Router.push('/')
+    url: '/api/users/all',
+    method: 'get',
+    onSuccess: () => console.log("casc")
   });
 
   const onSubmit = async event => {
@@ -33,7 +29,7 @@ export default () => {
         />
       </div>
       <div className="form-group">
-        <label>Password</label>
+        <label onClick={onSubmit}>Password</label>
         <input
           value={password}
           onChange={e => setPassword(e.target.value)}

@@ -4,12 +4,11 @@ import psl from 'psl'
 
 export default ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
-
   const doRequest = async (props = {}) => {
     const api = axios.create({
-      baseURL: 'https://ticketing.dev',
-      withCredentials: true
+      baseURL: location.origin
     });
+    console.log("tasak1", url, location.origin)
     try {
       setErrors(null);
       const response = await api[method](url, { ...body, ...props });
@@ -20,6 +19,7 @@ export default ({ url, method, body, onSuccess }) => {
 
       return response.data;
     } catch (err) {
+      console.log(err)
       setErrors(
         <div className="alert alert-danger">
           <h4>Ooops....</h4>

@@ -55,6 +55,13 @@ spec:
     - host: admin.ticketing.dev
       http:
         paths:
+          - path: /api/users/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: admin-users-srv
+                port:
+                  number: 3001
           - path: /?(.*)
             pathType: Prefix
             backend:
